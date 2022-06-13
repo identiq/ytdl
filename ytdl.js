@@ -20,24 +20,6 @@ app.get('/dl', function (req, res) {
     let title = req.query.title;
     let artist = req.query.artist;
     let album = req.query.album;
-    let publisherStr =
-        'Downloaded from YouTube using https://github.com/david-kroell/ytdl';
-
-    let startAt = req.query.startAt;
-    let endAt = req.query.endAt;
-
-    // calculate duration from start and end time
-    // format:  mm:ss[.xxx]
-    let convertionHelper = startAt.split(':'); // split it at the colons
-    // minutes are worth 60 seconds. Hours are worth 60 minutes.
-    let startSeconds = (+convertionHelper[0]) * 60 + (+convertionHelper[1]);
-
-    // format:  mm:ss[.xxx]
-    convertionHelper = endAt.split(':'); // split it at the colons
-    // minutes are worth 60 seconds. Hours are worth 60 minutes.
-    let endSeconds = (+convertionHelper[0]) * 60 + (+convertionHelper[1]);
-
-    let duration = endSeconds - startSeconds;
 
     let ip;
     if (process.env.PROXY_HEADER_REAL_IP_KEY){
@@ -56,17 +38,16 @@ app.get('/dl', function (req, res) {
     res.attachment(title + '.mp3');
 
     let output = ffmpeg(stream)
-        .audioBitrate(128)
+        .audioBitrate('320k')
+        .audioFrequency(44100)
+        .audioChannels(2)
+        .audioCodec('libmp3lame')
         .format('mp3')
-        .seekInput(startAt)
         .on('error', (err) => console.error(err))
-        .withOutputOption('-metadata', util.format('title=%s', title))
-        .withOutputOption('-metadata',
-        util.format('publisher=%s', publisherStr));
+        .withOutputOption('-metadata', util.format('title=%s', title));
 
-    if (!isNaN(duration)) {
-        output.duration(duration);
-    }
+
+
     if (artist) {
         output.withOutputOption('-metadata',
             util.format('artist=%s', artist));
