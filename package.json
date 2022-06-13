@@ -22,19 +22,10 @@
     "lint-fix": "./node_modules/.bin/eslint . --fix",
     "test": "mocha"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/david-kroell/ytdl.git"
-  },
   "keywords": [
     "mp3",
     "node",
     "ffmpeg"
   ],
-  "author": "David Kröll",
-  "license": "GPL-3.0",
-  "bugs": {
-    "url": "https://github.com/david-kroell/ytdl/issues"
-  },
-  "homepage": "https://github.com/david-kroell/ytdl#readme"
+  "license": "GPL-3.0"
 }

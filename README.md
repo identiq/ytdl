@@ -1,17 +1,12 @@
 # ytdl 
-![Latest release](https://img.shields.io/github/release/david-kroell/ytdl.svg?style=flat-square&colorB=d83f87) 
-![GitHub License](https://img.shields.io/github/license/david-kroell/ytdl.svg?style=flat-square) 
-![GitHub contributors](https://img.shields.io/github/contributors/david-kroell/ytdl.svg?style=flat-square&colorB=green) 
-![Docker Pulls](https://img.shields.io/docker/pulls/davidkroell/ytdl.svg?style=flat-square) 
-![MicroBadger Size](https://img.shields.io/microbadger/image-size/davidkroell/ytdl.svg?style=flat-square)
 
-![Screenshot from ytdl](screenshot.png "Screenshot from ytdl")
+
 A simple web-based YouTube MP3 downloader
 
 ## Installation
 
 ### From Dockerhub
-The official Docker image is hosted on [Dockerhub](https://hub.docker.com/r/davidkroell/ytdl/).
+The official Docker image is hosted on [Dockerhub].
 
 ```bash
  docker run -d -p 3000:3000 \
@@ -25,7 +20,6 @@ ytdl can also be built from source. For this, just follow along.
 
 ```bash
 # get the code and build a Docker image
-git clone https://github.com/david-kroell/ytdl
 cd ytdl
 docker build -t davidkroell/ytdl:fromSource .
 
